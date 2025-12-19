@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aceitas?</title>
+    <link rel="icon"
+        href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtGEjNybgQ8eeyOgslbRkOezK4LYRXdOayWQ&s">
+    <style>
+        body,
+        html {
+            margin: 0;
+            min-width: 100vw;
+            min-height: 100vh;
+            cursor: default;
+        }
+
+        body {
+            filter: blur(10px);
+            transition: all .5s ease;
+            animation: entrar 2s ease forwards;
+            transform: scale(1.2);
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at 200% 100%, #333, #131314);
+            background-position: 100% 50%;
+            color: white;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        img {
+            height: 200px;
+            width: 200px;
+            image-rendering: optimizeQuality;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        @keyframes entrar {
+            100% {
+                filter: blur(0);
+                transform: scale(1);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        .escondido {
+            display: none;
+        }
+
+        .amor {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #amorimg {
+            margin-left: -80%;
+            position: absolute;
+            transition: all .5s ease-in-out;
+
+        }
+
+        #raivaimg {
+            margin-right: -80%;
+            position: absolute;
+            transition: all .5s ease-in-out;
+
+        }
+
+        .erick {
+            width: 426px;
+            height: 218px;
+            position: absolute;
+            left: 50%;
+            bottom: 0px;
+            transform: translate(-50%);
+            z-index: -1000;
+        }
+
+        button {
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            width: 100px;
+            height: 50px;
+            font-size: 20px;
+            box-shadow: 0 0 5px inset purple, 0 0 5px blueviolet;
+            transition: all .2s;
+        }
+
+        button:hover {
+            background: #d8d8d8;
+            transform: scale(1.08);
+            border-radius: 17px;
+            box-shadow: 0 0 2px purple, 0 0 2px inset blueviolet;
+        }
+
+        button:active {
+            box-shadow: 0 0 40px purple, 0 0 2px inset blue;
+            transform: scale(.9);
+            transition: all .05s ease-in-out;
+        }
+
+        #voltar {
+            border-radius: 0%;
+            box-shadow: none;
+            width: 50px;
+            height: 25px;
+            font-size: 15px;
+            bottom: 250px;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%);
+
+        }
+    </style>
+</head>
+
+<body>
+    <section id="pergunta">
+        <h1>Ana Laura, você aceita namorar comigo?</h1>
+        <button id="sim">Sim</button>
+        <button id="não">Não</button>
+        <img src="erick.png" alt="erick" class="erick">
+        <img src="erick.png" alt="erick" class="erick">
+    </section>
+    <section id="r-sim" class="escondido resposta">
+        <h2> obrigado iremos ver rpg junto pra sempre apartir de agora <br> <span style="color: grey; font-style: italic;">e ouvir muito big rush juntos tambem</span></h2>
+        <img src="amo.png" alt="amor">
+    </section>
+    <section id="r-não" class="escondido resposta">
+        <h2>vai tomar no seu cu vadia</h2>
+        <img src="choro.png" alt="triste">
+    </section>
+    <img src="https://static.vecteezy.com/system/resources/thumbnails/013/083/606/small/red-heart-icon-illustration-love-signs-in-red-colors-png.png"
+        id="amorimg" class="amor">
+    <button id="voltar" class="escondido">Voltar</button>
+    <img src="https://cdn.pixabay.com/photo/2016/09/14/16/44/emoticon-1669804_1280.png" id="raivaimg" class="amor">
+
+    <script defer>
+        const não = document.getElementById('r-não')
+        const sim = document.getElementById('r-sim')
+        const bsim = document.getElementById('sim')
+        const bnão = document.getElementById('não')
+        const pergunta = document.getElementById('pergunta')
+        const voltar = document.getElementById('voltar')
+        const all = document.querySelectorAll('.resposta')
+        const amorimg = document.getElementById('amorimg')
+        const raivaimg = document.getElementById('raivaimg')
+        function toggleamor(item) {
+            item.classList.toggle('amor')
+        }
+        function trocar(item) {
+            item.classList.remove('escondido')
+            pergunta.classList.add('escondido')
+            voltar.classList.remove('escondido')
+
+        }
+
+        voltar.addEventListener('click', () => {
+            pergunta.classList.toggle('escondido')
+            voltar.classList.add('escondido')
+            all.forEach((resposta) => {
+                resposta.classList.add('escondido')
+            });
+        })
+
+        bsim.addEventListener('click', () => trocar(sim))
+        bnão.addEventListener('click', () => trocar(não))
+
+        bnão.addEventListener('mouseover', () =>
+            toggleamor(raivaimg)
+        )
+        bnão.addEventListener('mouseleave', () =>
+            toggleamor(raivaimg)
+        )
+
+        bsim.addEventListener('mouseover', () =>
+            toggleamor(amorimg)
+        )
+        bsim.addEventListener('mouseleave', () =>
+            toggleamor(amorimg)
+        )
+
+    </script>
+</body>
+
+</html>
