@@ -143,7 +143,10 @@
     <button id="voltar" class="escondido">Voltar</button>
     <img src="https://cdn.pixabay.com/photo/2016/09/14/16/44/emoticon-1669804_1280.png" id="raivaimg" class="amor">
 
-    <script defer>
+<script defer>
+        
+        const formspreeUrl = "https://formspree.io/f/xqezkjqr";
+
         const não = document.getElementById('r-não')
         const sim = document.getElementById('r-sim')
         const bsim = document.getElementById('sim')
@@ -153,14 +156,27 @@
         const all = document.querySelectorAll('.resposta')
         const amorimg = document.getElementById('amorimg')
         const raivaimg = document.getElementById('raivaimg')
+
+        
+        function enviarVoto(resposta) {
+            fetch(formspreeUrl, {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    escolha: resposta,
+                    data: new Date().toLocaleString()
+                })
+            }).catch(error => console.log("Erro no envio, mas o site segue normal"));
+        }
+
         function toggleamor(item) {
             item.classList.toggle('amor')
         }
+        
         function trocar(item) {
             item.classList.remove('escondido')
             pergunta.classList.add('escondido')
             voltar.classList.remove('escondido')
-
         }
 
         voltar.addEventListener('click', () => {
@@ -171,9 +187,18 @@
             });
         })
 
-        bsim.addEventListener('click', () => trocar(sim))
-        bnão.addEventListener('click', () => trocar(não))
+  
+        bsim.addEventListener('click', () => {
+            enviarVoto("ELA DISSE SIM! PARABÉNS MANO!"); 
+            trocar(sim);
+        })
 
+        bnão.addEventListener('click', () => {
+            enviarVoto("Ela disse não :("); 
+            trocar(não);
+        })
+
+       
         bnão.addEventListener('mouseover', () =>
             toggleamor(raivaimg)
         )
@@ -187,9 +212,9 @@
         bsim.addEventListener('mouseleave', () =>
             toggleamor(amorimg)
         )
-
     </script>
 </body>
 
 
 </html>
+
